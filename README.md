@@ -1,2 +1,2 @@
 # magicblog
-my blog
+my blog 2018
