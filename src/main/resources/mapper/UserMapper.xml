@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.magicdu.blog.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.UserInfo">
+		<id column="user_id" property="userid" jdbcType="VARCHAR" />
+		<result column="user_name" property="username" jdbcType="VARCHAR" />
+		<result column="email" property="useremail" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickname" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id,user_name,password,hash_salt,user_status,role_id,
+		nick_name,avatar,register_date, user_email,update_date
+	</sql>
+
+	<select id="getUserByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(*) from magic_users mu where mu.user_name=#{username,jdbcType=VARCHAR}
+	</select>
+	<insert id="addUser" parameterType="cn.magicdu.blog.pojo.User">
+		INSERT INTO magic_users(<include refid="Base_Column_List" />) VALUES
+		(
+		  #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		  #{password,jdbcType=VARCHAR}, #{hashsalt,jdbcType=VARCHAR},
+		  #{userstatus,jdbcType=INTEGER},#{roleid,jdbcType=VARCHAR},
+		  #{nickname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
+		  #{registerdate,jdbcType=DATE}, #{useremail,jdbcType=VARCHAR},
+		  #{updatedate,jdbcType=DATE}
+		)
+	</insert>
+</mapper>
