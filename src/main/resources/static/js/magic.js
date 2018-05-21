@@ -177,11 +177,10 @@ $('#login_btn').click(function(){
 			login_dialog.close();
 			$('#login_username').val("");
 			$('#login_password').val("");
-			if(data.msg=="error"){
+			if(data.key=="ERROR"){
 				mdui.alert("用户名或者密码错误");
 			}else{
-				localStorage.setItem("*-@5679sdf",data.auth);
-				init();
+                mdui.alert("登录成功");
 			}
 		},
 		error : function() {
