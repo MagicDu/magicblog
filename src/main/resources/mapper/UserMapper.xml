@@ -8,11 +8,20 @@
 		<result column="nick_name" property="nickname" jdbcType="VARCHAR" />
 		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
 	</resultMap>
+
+	<resultMap id="validateMap" type="cn.magicdu.blog.pojo.UserValidateInfo">
+		<id column="user_id" property="userid" jdbcType="VARCHAR" />
+		<result column="user_name" property="username" jdbcType="VARCHAR" />
+		<result column="hash_salt" property="hashsalt" jdbcType="VARCHAR" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		user_id,user_name,password,hash_salt,user_status,role_id,
 		nick_name,avatar,register_date, user_email,update_date
 	</sql>
 
+	<select id="validateUser" resultType="cn.magicdu.blog.pojo.UserValidateInfo" parameterType="java.lang.String">
+		SELECT mu.user_id userid,mu.user_name username,mu.password,mu.hash_salt hashsalt FROM magic_users mu where mu.user_name=#{user_name,jdbcType=VARCHAR}
+	</select>
 	<select id="getUserByName" resultType="java.lang.Integer" parameterType="java.lang.String">
 		SELECT count(*) from magic_users mu where mu.user_name=#{username,jdbcType=VARCHAR}
 	</select>

@@ -167,7 +167,7 @@ $('#user_login_btn_dialog').click(function() {
 $('#login_btn').click(function(){
 	$.ajax({
 		type : 'POST',
-		url : '../userLogin.action',
+		url : '/login',
 		data : {
 			"username" : $('#login_username').val(),
 			"password" : $('#login_password').val()

@@ -31,10 +31,9 @@ public class UserController {
         return  user;
     }
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public @ResponseBody Msg login(){
+    public @ResponseBody Msg login(String username,String password){
             msg=Msg.getInstance();
-            msg.setKey(SystemParam.OK);
-            msg.setValue("");
+            service.validateUser(username,password,msg);
             return msg;
     }
     @RequestMapping(value="/register",method = RequestMethod.POST)
