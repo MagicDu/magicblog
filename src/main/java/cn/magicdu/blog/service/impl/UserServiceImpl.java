@@ -8,6 +8,8 @@ import cn.magicdu.blog.pojo.UserValidateInfo;
 import cn.magicdu.blog.service.UserService;
 import cn.magicdu.blog.util.MagicUtil;
 import cn.magicdu.blog.util.PasswordHash;
+import cn.magicdu.core.DateUtil;
+import cn.magicdu.core.date.DatePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
                 user.setHashsalt(strArray[1]);
                 user.setUserid(MagicUtil.createUUID());
                 user.setRoleid("test");
-                user.setRegisterdate(new Date());
+                user.setRegisterdate(DateUtil.parseStrToDate(DatePattern.NORM_DATETIME_PATTERN,"now"));
                 mapper.addUser(user);
                 msg.setKey(SystemParam.OK);
                 msg.setValue("user added success");
