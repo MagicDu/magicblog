@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Date;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,11 +32,13 @@ public class UserServiceImpl implements UserService {
             try {
                 String hash= PasswordHash.createHash(user.getPassword());
                 String [] strArray=hash.split(":");
+                hash=MagicUtil.Base64(hash,"encode");
                 user.setPassword(hash);
                 user.setHashsalt(strArray[1]);
                 user.setUserid(MagicUtil.createUUID());
                 user.setRoleid("test");
-                user.setRegisterdate(DateUtil.parseStrToDate(DatePattern.NORM_DATETIME_PATTERN,"now"));
+                user.setRegisterdate(DateUtil.now(DatePattern.NORM_DATETIME_PATTERN));
+                user.setUpdatedate(DateUtil.now(DatePattern.NORM_DATETIME_PATTERN));
                 mapper.addUser(user);
                 msg.setKey(SystemParam.OK);
                 msg.setValue("user added success");
@@ -60,7 +62,7 @@ public class UserServiceImpl implements UserService {
         UserValidateInfo uvinfo=mapper.validateUser(username);
         if(uvinfo!=null){
             try {
-               boolean flag= PasswordHash.validatePassword(password,uvinfo.getPassword());
+               boolean flag= PasswordHash.validatePassword(password,MagicUtil.Base64(uvinfo.getPassword()));
                if(flag){
                    msg.setKey(SystemParam.OK);
                    msg.setValue(uvinfo);

@@ -6,8 +6,10 @@ import cn.magicdu.blog.SystemParam;
 import cn.magicdu.blog.pojo.User;
 import sun.misc.BASE64Encoder;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.UUID;
 
 /**
@@ -119,6 +121,25 @@ public class MagicUtil {
     }
 
 
+    /**
+     * Base64 encode and decode
+     * @param text
+     * @param params
+     * @return
+     */
+    public static String Base64(String text,String ...params){
+
+            try {
+                if(params.length>0&&params[0].equals("encode")) {
+                    return Base64.getEncoder().encodeToString(text.getBytes("UTF-8"));
+                }else{
+                    return new String(Base64.getDecoder().decode(text),"UTF-8");
+                }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+        }
+        return  null;
+    }
     public static void main(String[] args) {
         User user=new User();
         Msg msg=Msg.getInstance();

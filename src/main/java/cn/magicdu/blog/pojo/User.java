@@ -23,10 +23,10 @@ public class User {
     @NotBlank
     private String nickname;
     private String avatar;
-    private Date registerdate;
+    private String registerdate;
     @Email(message = "format of email is not valid")
     private String useremail;
-    private Date updatedate;
+    private String updatedate;
 
     public String getUserid() {
         return userid;
@@ -92,12 +92,20 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Date getRegisterdate() {
+    public String getRegisterdate() {
         return registerdate;
     }
 
-    public void setRegisterdate(Date registerdate) {
+    public void setRegisterdate(String registerdate) {
         this.registerdate = registerdate;
+    }
+
+    public String getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(String updatedate) {
+        this.updatedate = updatedate;
     }
 
     public String getUseremail() {
@@ -108,11 +116,5 @@ public class User {
         this.useremail = useremail;
     }
 
-    public Date getUpdatedate() {
-        return updatedate;
-    }
 
-    public void setUpdatedate(Date updatedate) {
-        this.updatedate = updatedate;
-    }
 }

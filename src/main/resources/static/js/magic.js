@@ -144,7 +144,11 @@ $("#regist_btn").click(function() {
 		dataType : 'json',
 		success : function(data) {
 			// 处理对话框
-			regist_dialog.close();
+            regist_dialog.close();
+			if(data.key=="ERROR"){
+
+			}
+
 			mdui.alert('注册成功,请查收激活邮件');
 		},
 		error : function() {
