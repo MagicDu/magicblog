@@ -145,6 +145,10 @@ $("#regist_btn").click(function() {
 		success : function(data) {
 			// 处理对话框
             regist_dialog.close();
+			$('#username').val("");
+            $('#email').val("");
+            $('#password').val("");
+            $('#password1').val("");
 			if(data.key=="ERROR"){
 
 			}
