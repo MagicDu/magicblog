@@ -3,6 +3,7 @@ package cn.magicdu.blog.web;
 import cn.magicdu.blog.Msg;
 import cn.magicdu.blog.pojo.User;
 import cn.magicdu.blog.service.UserService;
+import cn.magicdu.blog.util.MagicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(){
-        return new ModelAndView("index");
+        return MagicUtil.commonView("index");
     }
 
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)

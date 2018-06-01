@@ -23,6 +23,8 @@ $(function(){
 	else{
 		//divDisplay('#menubarwithbookmark','display:none');
 		$('#menubarwithbookmark').hide();
+
+
 	}
 })
 
@@ -410,6 +412,7 @@ function parseDataToView(data){
 		}
 	}
 }
+
 
 
 $('#edit_bookmarks_btn1').click(function() {

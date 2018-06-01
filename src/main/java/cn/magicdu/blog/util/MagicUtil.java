@@ -4,6 +4,7 @@ package cn.magicdu.blog.util;
 import cn.magicdu.blog.Msg;
 import cn.magicdu.blog.SystemParam;
 import cn.magicdu.blog.pojo.User;
+import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;
@@ -139,6 +140,18 @@ public class MagicUtil {
                 e.printStackTrace();
         }
         return  null;
+    }
+
+    /**
+     * Common return view
+     * @param viewvalue
+     * @return
+     */
+    public static ModelAndView commonView(String viewvalue){
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("msg",viewvalue);
+        mv.setViewName("common");
+        return  mv;
     }
     public static void main(String[] args) {
         User user=new User();

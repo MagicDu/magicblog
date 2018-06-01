@@ -1,9 +1,9 @@
-<div th:replace="common::html"></div>
+
 <head>
     <meta charset="utf-8" />
     <title>Simple example - Editor.md examples</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="editor.md/css/editormd.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/editor.md/css/editormd.css}" />
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -47,8 +47,8 @@
 </textarea>
     </div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="editor.md/editormd.min.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/editor.md/editormd.min.js}"></script>
 <script type="text/javascript">
     var testEditor;
 
@@ -72,4 +72,3 @@
     });
 </script>
 </body>
-</html>
