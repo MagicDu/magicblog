@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>云书签</title>
+    <script th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/mdui.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/mdui.min.css}">
+    <!--<link rel="stylesheet" th:href="@{/css/style.css}" />-->
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 </head>
 
 <body class=" mdui-theme-primary-blue mdui-theme-accent-pink  mdui-drawer-body-left mdui-appbar-with-toolbar">
@@ -43,7 +45,7 @@
 <div class="mdui-drawer" id="main-drawer">
     <div class="mdui-list" mdui-collapse="{accordion: true}"
          style="margin-bottom: 76px;">
-        <div class="mdui-collapse-item ">
+        <div  class="mdui-collapse-item mdui-collapse-item-open">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <i
                         class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">near_me</i>
@@ -51,6 +53,7 @@
                 <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
             </div>
             <div class="mdui-collapse-item-body mdui-list">
+                <a href="./download" class="mdui-list-item mdui-ripple mdui-list-item-active">云便签 </a>
                 <a href="./download" class="mdui-list-item mdui-ripple ">开源项目 </a>
                 <a href="./compatibility" class="mdui-list-item mdui-ripple ">博客收藏</a>
                 <a href="./specs" class="mdui-list-item mdui-ripple ">Python爬虫</a>
@@ -58,7 +61,7 @@
             </div>
         </div>
 
-        <div class="mdui-collapse-item ">
+        <div id="article" class="mdui-collapse-item ">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <i
                         class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">layers</i>
@@ -66,8 +69,8 @@
                 <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
             </div>
             <div class="mdui-collapse-item-body mdui-list">
-                <a href="./articles" class="mdui-list-item mdui-ripple ">所有文章</a> <a
-                    href="./articles/edit" class="mdui-list-item mdui-ripple ">写文章</a> <a
+                <a href="/articles" class="mdui-list-item mdui-ripple ">所有文章</a> <a id="edit"
+                    href="/articles/edit" class="mdui-list-item mdui-ripple ">写文章</a> <a
                     href="./grid" class="mdui-list-item mdui-ripple ">网格布局</a> <a
                     href="./typo" class="mdui-list-item mdui-ripple ">排版</a> <a
                     href="./icon" class="mdui-list-item mdui-ripple ">图标</a> <a
@@ -77,14 +80,14 @@
             </div>
         </div>
 
-        <div class="mdui-collapse-item mdui-collapse-item-open">
+        <div class="mdui-collapse-item">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <i
                         class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">widgets</i>
                 <div class="mdui-list-item-content">组件</div>
                 <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
             </div>
-            <div class="mdui-collapse-item-body mdui-list" style="height: auto;">
+            <div class="mdui-collapse-item-body mdui-list">
                 <a href="./ripple" class="mdui-list-item mdui-ripple ">涟漪动画效果</a> <a
                     href="./button" class="mdui-list-item mdui-ripple ">按钮</a> <a
                     href="./fab" class="mdui-list-item mdui-ripple ">浮动操作按钮</a> <a
@@ -101,7 +104,7 @@
                     href="./toolbar" class="mdui-list-item mdui-ripple ">工具栏</a> <a
                     href="./appbar" class="mdui-list-item mdui-ripple ">应用栏</a> <a
                     href="./drawer"
-                    class="mdui-list-item mdui-ripple mdui-list-item-active">抽屉式导航</a>
+                    class="mdui-list-item mdui-ripple">抽屉式导航</a>
                 <a href="./bottom_nav" class="mdui-list-item mdui-ripple ">底部导航栏</a>
                 <a href="./card" class="mdui-list-item mdui-ripple ">卡片</a> <a
                     href="./chip" class="mdui-list-item mdui-ripple ">纸片</a> <a
@@ -286,8 +289,8 @@
         </div>
     </div>
 </div>
-<div id="container">
-<div th:replace="${msg}"></div>
+<div id="container" class="mdui-container doc-container doc-no-cover">
+    <div th:replace="${msg}"></div>
 </div>
 <script type="text/javascript" th:src="@{/js/magic.js}"></script>
 
