@@ -23,10 +23,22 @@ $(function(){
 	else{
 		//divDisplay('#menubarwithbookmark','display:none');
 		$('#menubarwithbookmark').hide();
-
+        /*$('a').each(function(){
+             $(this).attr('onclick',"return aClick(this);");
+        });*/
 
 	}
 })
+
+function aClick(a){
+	$("#container").innerHTML("<div th:replace="+a.href+"></div>")
+    $(".mdui-collapse-item-open").removeClass("mdui-collapse-item-open");
+    $(".mdui-list-item-active").removeClass("mdui-list-item-active");
+    console.log(a.parent().parent());
+	a.parent().parent().addClass("mdui-collapse-item-open");
+	a.addClass("mdui-list-item-active");
+	return false;
+}
 
 /**
  * 设置某个元素的css属性
