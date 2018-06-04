@@ -18,10 +18,21 @@
     </div>
     </div>
 </div>
-<div style="float:right;margin-top: 10px">
-    <button id="savedraft" class="mdui-btn mdui-btn-raised">保存草稿</button>
-    <button id="look" class="mdui-btn mdui-btn-raised">预览</button>
-    <button id="save" class="mdui-btn mdui-btn-raised">发布</button>
+<div style="float:right;margin-top: 100px">
+    <div class="mdui-card">
+        <div class="mdui-card-media">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">发布</div>
+                <div class="mdui-float-right"><i class="mdui-icon material-icons">&#xe5c7;</i></div>
+            </div>
+        </div>
+        <div class="mdui-divider"></div>
+        <div class="mdui-card-actions mdui-card-actions-stacked">
+            <button id="savedraft" class="mdui-btn mdui-btn-raised mdui-float-left">保存草稿</button>
+            <button id="look" class="mdui-btn mdui-btn-raised mdui-float-left">预览</button>
+            <button id="save" class="mdui-btn mdui-btn-raised mdui-float-left">发布</button>
+        </div>
+    </div>
 </div>
 <script th:src="@{/editor.md/editormd.min.js}"></script>
 <script type="text/javascript">
