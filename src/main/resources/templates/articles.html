@@ -4,22 +4,24 @@
     <link rel="stylesheet" th:href="@{/editor.md/css/editormd.css}" />
 </head>
 <div id="layout">
-    <h1>撰写新文章</h1>
+
+    <div id="art" style="float: left;padding-right: 3px;width: 70%">
+        <h1>撰写新文章</h1>
     <div class="mdui-textfield">
         <input class="mdui-textfield-input" type="text" placeholder="在此处输入标题"/>
     </div>
-    <div id="test-editormd">
+    <div id="test-editormd" style="float: left">
         <textarea style="display:none;">
 
 
         </textarea>
     </div>
-    <div>
-        <button id="savedraft" class="mdui-btn mdui-btn-raised">保存草稿</button>
-        <button id="look" class="mdui-btn mdui-btn-raised">预览</button>
-        <button id="save" class="mdui-btn mdui-btn-raised">发布</button>
     </div>
-
+</div>
+<div style="float:right;margin-top: 10px">
+    <button id="savedraft" class="mdui-btn mdui-btn-raised">保存草稿</button>
+    <button id="look" class="mdui-btn mdui-btn-raised">预览</button>
+    <button id="save" class="mdui-btn mdui-btn-raised">发布</button>
 </div>
 <script th:src="@{/editor.md/editormd.min.js}"></script>
 <script type="text/javascript">
@@ -27,8 +29,8 @@
 
     $(function() {
         testEditor = editormd("test-editormd", {
-            width   : "70%",
-            height  : 500,
+            width   : "100%",
+            height  : 400,
             syncScrolling : "single",
             path    : "../editor.md/lib/"
         });
