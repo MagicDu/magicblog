@@ -2,16 +2,19 @@
 
 <head>
     <link rel="stylesheet" th:href="@{/editor.md/css/editormd.css}" />
+    <script th:src="@{/js/article.js}"></script>
+
 </head>
 <div id="layout">
 
     <div id="art" style="float: left;padding-right: 3px;width: 70%">
         <h1>撰写新文章</h1>
     <div class="mdui-textfield">
-        <input class="mdui-textfield-input" type="text" placeholder="在此处输入标题"/>
+        <input id="title" class="mdui-textfield-input" type="text" placeholder="在此处输入标题"/>
     </div>
-    <div id="test-editormd" style="float: left">
-        <textarea style="display:none;"></textarea>
+    <div id="editor" style="float: left">
+        <textarea id="editor-markdown-doc" class="editormd-markdown-textarea" style="display:none;"></textarea>
+        <textarea id="editor-html-code" class="editormd-html-textarea" style="display:none;"></textarea>
     </div>
     </div>
 </div>
@@ -42,13 +45,39 @@
             <button id="save" class="mdui-btn mdui-btn-raised mdui-float-right">发布</button>
         </div>
     </div>
+    <div class="mdui-card" style="margin-top: 50px">
+        <div class="mdui-card-media">
+            <div class="mdui-card-primary">
+                <div class="">分类目录</div>
+                <div class="mdui-float-right"><i class="mdui-icon material-icons">&#xe5c7;</i></div>
+            </div>
+        </div>
+        <div class="mdui-divider"></div>
+        <div style="padding-top: 10px;width: 100%" >
+            <button id="" class="mdui-btn mdui-btn-raised mdui-float-left">保存草稿</button>
+            <button id="7" class="mdui-btn mdui-btn-raised">预览</button>
+        </div>
+        <div>
+            <i class="mdui-icon material-icons">&#xe417;</i>
+            <label class="mdui-switch">
+                <input type="checkbox" checked/>
+                公开度
+                <i class="mdui-switch-icon"></i>
+            </label>
+        </div>
+
+        <div class="mdui-card-actions mdui-card-actions-stacked mdui-color-grey-100">
+
+            <button id="s" class="mdui-btn mdui-btn-raised mdui-float-right">发布</button>
+        </div>
+    </div>
 </div>
 <script th:src="@{/editor.md/editormd.min.js}"></script>
 <script type="text/javascript">
     var testEditor;
 
     $(function() {
-        testEditor = editormd("test-editormd", {
+        testEditor = editormd("editor", {
             width   : "100%",
             height  : 400,
             syncScrolling : "single",
