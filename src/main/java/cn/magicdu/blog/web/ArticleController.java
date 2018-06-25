@@ -1,6 +1,8 @@
 package cn.magicdu.blog.web;
 
 import cn.magicdu.blog.Msg;
+import cn.magicdu.blog.SystemParam;
+import cn.magicdu.blog.pojo.Article;
 import cn.magicdu.blog.util.MagicUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,5 +21,12 @@ public class ArticleController {
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public  ModelAndView edit(){
         return MagicUtil.commonView("articles");
+    }
+    @RequestMapping(value ="/savearticle",method = RequestMethod.POST)
+    public  Msg savearticle(Article article){
+        msg=Msg.getInstance();
+        msg.setKey(SystemParam.OK);
+        msg.setValue("保存成功");
+        return msg;
     }
 }
