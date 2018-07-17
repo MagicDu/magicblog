@@ -1,5 +1,7 @@
 package cn.magicdu.blog.pojo;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  *  Article Info
  * @author magicdu
@@ -8,7 +10,9 @@ package cn.magicdu.blog.pojo;
  */
 public class Article {
     private  String articleid;
+    @NotBlank
     private  String articletitle;
+    @NotBlank
     private  String articlecontent;
     private  String createdate;
     private  String postdate;
