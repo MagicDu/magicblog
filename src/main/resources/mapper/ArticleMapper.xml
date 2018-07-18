@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.magicdu.blog.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.UserInfo">
-		<id column="user_id" property="userid" jdbcType="VARCHAR" />
-		<result column="user_name" property="username" jdbcType="VARCHAR" />
-		<result column="email" property="useremail" jdbcType="VARCHAR" />
-		<result column="nick_name" property="nickname" jdbcType="VARCHAR" />
-		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+<mapper namespace="cn.magicdu.blog.dao.ArticleMapper">
+	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.Article">
+		<id column="article_id" property="articleid" jdbcType="VARCHAR" />
+		<result column="article_title" property="articletitle" jdbcType="VARCHAR" />
+		<result column="article_content" property="articlecontent" jdbcType="VARCHAR" />
+		<result column="create_date" property="createdate" jdbcType="Date" />
+		<result column="post_date" property="postdate" jdbcType="Date" />
+		<result column="post_status" property="poststatus" javaType="Integer"/>
+		<result column="post_password" property="postpassword" javaType="VARCHAR"/>
+		<result column="comment_staus" property="commentstaus" javaType="Integer"/>
+		<result column="user_id" property="userid" javaType="VARCHAR"></result>
+		<result column="category_id" property="categoryid" javaType="VARCHAR"></result>
 	</resultMap>
 
 	<resultMap id="validateMap" type="cn.magicdu.blog.pojo.UserValidateInfo">
@@ -15,8 +20,8 @@
 		<result column="hash_salt" property="hashsalt" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		user_id,user_name,password,hash_salt,user_status,role_id,
-		nick_name,avatar,register_date, user_email,update_date
+		article_id, article_title, article_content, create_date, post_date, post_status,
+		post_password, comment_status, user_id, category_id
 	</sql>
 
 	<select id="validateUser" resultType="cn.magicdu.blog.pojo.UserValidateInfo" parameterType="java.lang.String">
@@ -25,15 +30,14 @@
 	<select id="getUserByName" resultType="java.lang.Integer" parameterType="java.lang.String">
 		SELECT count(*) from magic_users mu where mu.user_name=#{username,jdbcType=VARCHAR}
 	</select>
-	<insert id="addUser" parameterType="cn.magicdu.blog.pojo.User">
+	<insert id="addArticle" parameterType="cn.magicdu.blog.pojo.User">
 		INSERT INTO magic_users(<include refid="Base_Column_List" />) VALUES
 		(
-		  #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-		  #{password,jdbcType=VARCHAR}, #{hashsalt,jdbcType=VARCHAR},
-		  #{userstatus,jdbcType=INTEGER},#{roleid,jdbcType=VARCHAR},
-		  #{nickname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
-		  #{registerdate,jdbcType=DATE}, #{useremail,jdbcType=VARCHAR},
-		  #{updatedate,jdbcType=DATE}
+		  #{article_id,jdbcType=VARCHAR}, #{article_title,jdbcType=VARCHAR},
+		  #{article_content,jdbcType=VARCHAR}, #{create_date,jdbcType=DATE},
+		  #{post_date,jdbcType=DATE},#{post_status,jdbcType=INTEGER},
+		  #{post_password,jdbcType=VARCHAR}, #{comment_status,jdbcType=INTEGER},
+		  #{user_id,jdbcType=VARCHAR}, #{category_id,jdbcType=VARCHAR}
 		)
 	</insert>
 </mapper>
