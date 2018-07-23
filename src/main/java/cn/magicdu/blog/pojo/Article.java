@@ -18,7 +18,7 @@ public class Article {
     private  String postdate;
     private  int poststatus;
     private  String postpassword;
-    private  int commentstaus;
+    private  int commentstatus;
     private  String userid;
     private  String categoryid;
 
@@ -79,12 +79,12 @@ public class Article {
         this.postpassword = postpassword;
     }
 
-    public int getCommentstaus() {
-        return commentstaus;
+    public void setCommentstatus(int commentstatus) {
+        this.commentstatus = commentstatus;
     }
 
-    public void setCommentstaus(int commentstaus) {
-        this.commentstaus = commentstaus;
+    public int getCommentstatus() {
+        return commentstatus;
     }
 
     public String getUserid() {

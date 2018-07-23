@@ -1,7 +1,6 @@
 package cn.magicdu.blog.web;
 
 import cn.magicdu.blog.Msg;
-import cn.magicdu.blog.SystemParam;
 import cn.magicdu.blog.pojo.Article;
 import cn.magicdu.blog.service.ArticleService;
 import cn.magicdu.blog.util.MagicUtil;
@@ -28,10 +27,8 @@ public class ArticleController {
     }
     @RequestMapping(value ="/savearticle",method = RequestMethod.POST)
     public  Msg savearticle(Article article){
-        articleService.addArticle(article);
         msg=Msg.getInstance();
-        msg.setKey(SystemParam.OK);
-        msg.setValue("保存成功");
+        articleService.addArticle(article,msg);
         return msg;
     }
 }
