@@ -153,6 +153,19 @@ public class MagicUtil {
         mv.setViewName("common");
         return  mv;
     }
+
+    /**
+     * Common return view with json data
+     * @param jsonData
+     * @return
+     */
+    public static ModelAndView commonJsonView(String jsonData){
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("jsonData",jsonData);
+        mv.setViewName("common");
+        return  mv;
+    }
+
     public static void main(String[] args) {
         User user=new User();
         Msg msg=Msg.getInstance();

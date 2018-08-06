@@ -434,3 +434,19 @@ $('#edit_bookmarks_btn1').click(function() {
 $('#test_btn').click(function() {
 	window.location.href = 'http://www.baidu.com';
 })
+
+/*$('#edit').click(function () {
+	$.ajax({
+		type:'POST',
+		url:"/articles/edit/",
+        data : {
+            "user_id" : 'test'
+        },
+        success:function(data){
+			console.log(data)
+        },
+        error:function(){
+            mdui.alert('服务器错误')
+        }
+	});
+});*/
