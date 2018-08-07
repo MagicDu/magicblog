@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.magicdu.blog.dao.CategoryMapper">
+	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.Category">
+		<id column="category_id" property="categoryid" jdbcType="INTEGER" />
+		<result column="category_name" property="categoryname" jdbcType="VARCHAR" />
+		<result column="user_id" property="userid" jdbcType="VARCHAR" />
+		<result column="parent_cate_id" property="parentcateid" jdbcType="INTEGER"></result>
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		category_id, category_name, user_id, parent_cate_id
+	</sql>
+
+
+	<insert id="addCategory" parameterType="cn.magicdu.blog.pojo.Category">
+		INSERT INTO magic_articles(<include refid="Base_Column_List" />) VALUES
+		(
+		  #{categoryid,jdbcType=INTEGER}, #{category_name,jdbcType=VARCHAR},
+		  #{user_id,jdbcType=VARCHAR}, #{parent_cate_id,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<select id="getUserCategory" parameterType="java.lang.String" resultMap="cn.magicdu.blog.pojo.Category">
+		select mc.category_id,mc.category_name,mc.user_id,mc.parent_cate_id
+		from magic_category mc where mc.user_id=#{userid,jdbcType=VARCHAR}
+	</select>
+</mapper>
