@@ -3,6 +3,7 @@ package cn.magicdu.blog.util;
 
 import cn.magicdu.blog.Msg;
 import cn.magicdu.blog.SystemParam;
+import cn.magicdu.blog.pojo.CommonReturnInfo;
 import cn.magicdu.blog.pojo.User;
 import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Encoder;
@@ -156,12 +157,12 @@ public class MagicUtil {
 
     /**
      * Common return view with json data
-     * @param jsonData
+     * @param data
      * @return
      */
-    public static ModelAndView commonJsonView(String jsonData){
+    public static ModelAndView commonJsonView(CommonReturnInfo data){
         ModelAndView mv=new ModelAndView();
-        mv.addObject("jsonData",jsonData);
+        mv.addObject("data",data);
         mv.setViewName("common");
         return  mv;
     }
