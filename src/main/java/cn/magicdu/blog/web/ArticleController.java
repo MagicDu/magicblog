@@ -3,6 +3,7 @@ package cn.magicdu.blog.web;
 import cn.magicdu.blog.Msg;
 import cn.magicdu.blog.pojo.Article;
 import cn.magicdu.blog.service.ArticleService;
+import cn.magicdu.blog.service.CategoryService;
 import cn.magicdu.blog.util.MagicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ public class ArticleController {
     private Msg msg;
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(){
         return MagicUtil.commonView("articles");
@@ -23,8 +27,9 @@ public class ArticleController {
 
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public  ModelAndView edit(){
-        return MagicUtil.commonView("articles");
+        return MagicUtil.commonView("articles",categoryService.getUserCategory("test"));
     }
+
     @RequestMapping(value ="/savearticle",method = RequestMethod.POST)
     public  Msg savearticle(Article article){
         msg=Msg.getInstance();

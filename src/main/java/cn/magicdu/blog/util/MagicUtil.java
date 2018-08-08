@@ -5,6 +5,8 @@ import cn.magicdu.blog.Msg;
 import cn.magicdu.blog.SystemParam;
 import cn.magicdu.blog.pojo.CommonReturnInfo;
 import cn.magicdu.blog.pojo.User;
+import com.alibaba.fastjson.JSONArray;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Encoder;
 
@@ -163,6 +165,22 @@ public class MagicUtil {
     public static ModelAndView commonJsonView(CommonReturnInfo data){
         ModelAndView mv=new ModelAndView();
         mv.addObject("data",data);
+        mv.setViewName("common");
+        return  mv;
+    }
+
+    /**
+     *
+     * @param viewvalue
+     * @param data
+     * @return
+     */
+    public static ModelAndView commonView(String viewvalue,Object data){
+        ModelAndView mv=new ModelAndView();
+        CommonReturnInfo info=new CommonReturnInfo();
+        info.setViewname(viewvalue);
+        info.setJsonData(JSONArray.toJSONString(data));
+        mv.addObject("data",info);
         mv.setViewName("common");
         return  mv;
     }
