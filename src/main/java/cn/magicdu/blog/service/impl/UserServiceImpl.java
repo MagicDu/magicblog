@@ -11,6 +11,8 @@ import cn.magicdu.blog.util.PasswordHash;
 import cn.magicdu.core.DateUtil;
 import cn.magicdu.core.date.DatePattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -80,5 +82,10 @@ public class UserServiceImpl implements UserService {
             msg.setValue("username or password is not correct");
         }
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
