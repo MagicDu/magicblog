@@ -86,6 +86,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        UserDetails user=mapper.validateUser(username);
+        if(user==null){
+            throw new UsernameNotFoundException(" username:"+username+"not found");
+        }
+        return user;
     }
 }
