@@ -172,6 +172,10 @@ $("#regist_btn").click(function() {
 		error : function() {
 			// 处理错误
 			regist_dialog.close();
+            $('#username').val("");
+            $('#email').val("");
+            $('#password').val("");
+            $('#password1').val("");
 			mdui.alert('注册失败');
 			// window.location.href='login.html';
 		}
@@ -185,6 +189,12 @@ $("#regist_btn").click(function() {
  */
 $('#user_login_btn_dialog').click(function() {
 	login_dialog.open();
+});
+$('#cancel').click(function() {
+    $('#username').val("");
+    $('#email').val("");
+    $('#password').val("");
+    $('#password1').val("");
 });
 $('#login_btn').click(function(){
 	$.ajax({
