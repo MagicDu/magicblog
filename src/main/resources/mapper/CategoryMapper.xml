@@ -15,14 +15,14 @@
 
 
 	<insert id="addCategory" parameterType="cn.magicdu.blog.pojo.Category">
-		INSERT INTO magic_articles(<include refid="Base_Column_List" />) VALUES
+		INSERT INTO magic_category(<include refid="Base_Column_List" />) VALUES
 		(
 		  #{categoryid,jdbcType=INTEGER}, #{category_name,jdbcType=VARCHAR},
 		  #{user_id,jdbcType=VARCHAR}, #{parent_cate_id,jdbcType=INTEGER}
 		)
 	</insert>
 
-	<select id="getUserCategory" parameterType="java.lang.String" resultMap="cn.magicdu.blog.pojo.Category">
+	<select id="getUserCategory" parameterType="java.lang.String" resultType="cn.magicdu.blog.pojo.Category">
 		select mc.category_id,mc.category_name,mc.user_id,mc.parent_cate_id
 		from magic_category mc where mc.user_id=#{userid,jdbcType=VARCHAR}
 	</select>

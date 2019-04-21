@@ -38,6 +38,7 @@ public class UserController {
     }
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public  Msg register(User user){
+        System.err.println("add user");
         msg=Msg.getInstance();
         service.addUser(user,msg);
         return msg;

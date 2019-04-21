@@ -14,18 +14,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JWT 工具类
- * @www.codesheep.cn
- * 20190312
+ * JWT utils
+ * @ internet
+ * @ Date 2019/04/20
  */
 @Component
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -5625635588908941275L;
 
-    private static final String CLAIM_KEY_USERNAME = "sub";
-    private static final String CLAIM_KEY_CREATED = "created";
+    private static final String CLAIM_KEY_USERNAME = "magic";
+    private static final String CLAIM_KEY_CREATED = "validate";
 
+    /**
+     * get username from token
+     * @param token
+     * @return
+     */
     public String getUsernameFromToken(String token) {
         String username;
         try {
@@ -37,6 +42,11 @@ public class JwtTokenUtil implements Serializable {
         return username;
     }
 
+    /**
+     * get create date from token
+     * @param token
+     * @return
+     */
     public Date getCreatedDateFromToken(String token) {
         Date created;
         try {
@@ -48,6 +58,11 @@ public class JwtTokenUtil implements Serializable {
         return created;
     }
 
+    /**
+     * get expiration date from token
+     * @param token
+     * @return
+     */
     public Date getExpirationDateFromToken(String token) {
         Date expiration;
         try {
@@ -59,6 +74,11 @@ public class JwtTokenUtil implements Serializable {
         return expiration;
     }
 
+    /**
+     * get Claims from token
+     * @param token
+     * @return
+     */
     private Claims getClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -72,19 +92,39 @@ public class JwtTokenUtil implements Serializable {
         return claims;
     }
 
+    /**
+     * generate expiration date
+     * @return
+     */
     private Date generateExpirationDate() {
         return new Date(System.currentTimeMillis() + SystemParam.EXPIRATION_TIME * 1000);
     }
 
+    /**
+     * validate the token is expired or not
+     * @param token
+     * @return
+     */
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
+    /**
+     * validate the token is last password reset or not
+     * @param created
+     * @param lastPasswordReset
+     * @return
+     */
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
     }
 
+    /**
+     * generate token from user details
+     * @param userDetails
+     * @return
+     */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
@@ -92,6 +132,11 @@ public class JwtTokenUtil implements Serializable {
         return generateToken(claims);
     }
 
+    /**
+     * generate token from claims
+     * @param claims
+     * @return
+     */
     String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -100,10 +145,20 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
+    /**
+     * validate the token can be refreshed or not
+     * @param token
+     * @return
+     */
     public Boolean canTokenBeRefreshed(String token) {
         return !isTokenExpired(token);
     }
 
+    /**
+     * refresh token
+     * @param token
+     * @return
+     */
     public String refreshToken(String token) {
         String refreshedToken;
         try {
@@ -116,6 +171,12 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
+    /**
+     *  validate token by user details
+     * @param token
+     * @param userDetails
+     * @return
+     */
     public Boolean validateToken(String token, UserDetails userDetails) {
         UserValidateInfo user = (UserValidateInfo) userDetails;
         final String username = getUsernameFromToken(token);

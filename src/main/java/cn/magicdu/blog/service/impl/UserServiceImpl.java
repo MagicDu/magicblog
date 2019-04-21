@@ -6,6 +6,7 @@ import cn.magicdu.blog.dao.UserMapper;
 import cn.magicdu.blog.pojo.User;
 import cn.magicdu.blog.pojo.UserValidateInfo;
 import cn.magicdu.blog.service.UserService;
+import cn.magicdu.blog.util.JwtTokenUtil;
 import cn.magicdu.blog.util.MagicUtil;
 import cn.magicdu.blog.util.PasswordHash;
 import cn.magicdu.core.DateUtil;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper mapper;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
     @Override
     public void addUser(User user,Msg msg) {
         // 首先需要判断是否存在该用户名
@@ -56,6 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int getUserByName(String username) {
+        System.err.println("get user");
         return mapper.getUserByName(username);
     }
 
@@ -67,7 +71,7 @@ public class UserServiceImpl implements UserService {
                boolean flag= PasswordHash.validatePassword(password,MagicUtil.Base64(uvinfo.getPassword()));
                if(flag){
                    msg.setKey(SystemParam.OK);
-                   msg.setValue(uvinfo);
+                   msg.setValue(jwtTokenUtil.generateToken(uvinfo));
                }else{
                    msg.setKey(SystemParam.ERROR);
                    msg.setValue("username or password is not correct");
