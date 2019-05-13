@@ -23,8 +23,8 @@ public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -5625635588908941275L;
 
-    private static final String CLAIM_KEY_USERNAME = "magic";
-    private static final String CLAIM_KEY_CREATED = "validate";
+    private static final String CLAIM_KEY_USERNAME = "sub";
+    private static final String CLAIM_KEY_CREATED = "created";
 
     /**
      * get username from token
@@ -138,7 +138,7 @@ public class JwtTokenUtil implements Serializable {
      * @return
      */
     String generateToken(Map<String, Object> claims) {
-        return Jwts.builder()
+        return SystemParam.TOKEN_PREFIX+Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, SystemParam.SECRET )

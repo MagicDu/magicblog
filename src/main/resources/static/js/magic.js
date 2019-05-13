@@ -59,6 +59,9 @@ function init(){
 								data : {
 									"user_id" : 'test'
 								},
+								headers:{
+									"Authorization":localStorage.getItem("authtoken")
+								},
 								dataType : 'json',
 								success : function(data) {
 									// alert(data);
@@ -203,6 +206,8 @@ $('#login_btn').click(function(){
 				mdui.alert("用户名或者密码错误");
 			}else{
                 mdui.alert("登录成功");
+                localStorage.setItem("authtoken",data.value);
+                init();
 			}
 		},
 		error : function() {
@@ -233,6 +238,9 @@ $('#add_bookmark_btn').click(function() {
 	}
 	$.ajax({
 		type : 'POST',
+		headers:{
+		"Authorization":localStorage.getItem("authtoken")
+		},
 		url : '../addBookmark.action',
 		data : {
 			"name" : $('#name').val(),
