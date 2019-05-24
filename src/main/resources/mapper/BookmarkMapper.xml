@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.magicdu.blog.dao.BookmarkMapper">
+	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.Bookmark">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="user_id" property="user_id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="category_id" property="category_id" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="state" property="description" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,user_id,name,url,category_id,description,state
+	</sql>
+
+	<insert id="addBookmark" parameterType="cn.magicdu.blog.pojo.Bookmark">
+		INSERT INTO magic_bookmarks(<include refid="Base_Column_List" />) VALUES
+		(
+		  #{id,jdbcType=VARCHAR}, #{user_id,jdbcType=VARCHAR},
+		  #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+		#{category_id,jdbcType=VARCHAR},
+		  #{description,jdbcType=VARCHAR},
+		#{state,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<select id="getBookmarksByUserid" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT mb.id,mb.user_id,mb.name,mb.url,
+		mb.category_id,mb.description,mb.state   FROM magic_bookmarks mb
+	</select>
+</mapper>

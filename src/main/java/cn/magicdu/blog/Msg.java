@@ -5,30 +5,30 @@ package cn.magicdu.blog;
  * @author  magicdu
  * @version 1.0.0
  */
-public class Msg {
-    private Object key;
-    private Object value;
+public class Msg<K,V> {
+    private K key;
+    private V value;
 
-    private Msg(){}
-    
-    public Object getKey() {
+    private Msg(){
+    }
+
+    public K getKey() {
         return key;
     }
 
-    public void setKey(Object key) {
+    public void setKey(K key) {
         this.key = key;
     }
 
-    public Object getValue() {
+    public V getValue() {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(V value) {
         this.value = value;
     }
 
-    private static final Msg msg=new Msg();
-    public static Msg getInstance(){
-        return msg;
+    public static  Msg getInstance(){
+        return new Msg();
     }
 }

@@ -55,7 +55,7 @@ function init(){
 					$('#menubarwithbookmark').show();
 					$.ajax({
 								type : 'POST',
-								url : '../selectBookmarks.action',
+								url : '../bookmarks/selectBookmarks',
 								data : {
 									"user_id" : 'test'
 								},
@@ -65,7 +65,7 @@ function init(){
 								dataType : 'json',
 								success : function(data) {
 									// alert(data);
-									$.each(data,function(i, item) {
+									$.each(data.value,function(i, item) {
 														// console.log(item.url);
 
 														$('#bookmarks_list')
@@ -241,7 +241,7 @@ $('#add_bookmark_btn').click(function() {
 		headers:{
 		"Authorization":localStorage.getItem("authtoken")
 		},
-		url : '../addBookmark.action',
+		url : '../bookmarks/addBookmark',
 		data : {
 			"name" : $('#name').val(),
 			"url" : $('#url').val(),
@@ -251,11 +251,11 @@ $('#add_bookmark_btn').click(function() {
 		dataType : 'json',
 		success : function(data) {
 			mdui.alert('添加成功');
-			alert(data.msg);
+			//alert(data.key);
 		},
 		error : function(data) {
 			mdui.alert('添加失败');
-			alert(data.msg);
+			//alert(data.msg);
 		}
 	})
 })

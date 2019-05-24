@@ -1,0 +1,15 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/magicblog?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 940726
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml

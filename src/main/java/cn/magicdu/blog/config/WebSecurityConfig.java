@@ -54,7 +54,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST).authenticated()
                 .antMatchers(HttpMethod.PUT).authenticated()
                 .antMatchers(HttpMethod.DELETE).authenticated()
-                .antMatchers(HttpMethod.GET).permitAll();
+                .antMatchers(HttpMethod.GET).permitAll()
+                .and()
+                .cors();
         // .antMatchers(HttpMethod.GET,"/articles").authenticated().and().formLogin().loginPage("/");
                 //.antMatchers(HttpMethod.GET).authenticated().and().formLogin().loginPage("/");
 

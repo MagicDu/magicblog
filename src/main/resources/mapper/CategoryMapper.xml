@@ -8,11 +8,9 @@
 		<result column="parent_cate_id" property="parentcateid" jdbcType="INTEGER"></result>
 	</resultMap>
 
-
 	<sql id="Base_Column_List">
 		category_id, category_name, user_id, parent_cate_id
 	</sql>
-
 
 	<insert id="addCategory" parameterType="cn.magicdu.blog.pojo.Category">
 		INSERT INTO magic_category(<include refid="Base_Column_List" />) VALUES
