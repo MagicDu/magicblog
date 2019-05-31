@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.magicdu.blog.dao.MenuMapper">
+	<resultMap id="BaseResultMap" type="cn.magicdu.blog.pojo.Menu">
+		<id column="menu_id" property="menu_id" jdbcType="VARCHAR" />
+		<result column="child_menu_id" property="child_menu_id" jdbcType="VARCHAR" />
+		<result column="parent_menu_id" property="parent_menu_id" jdbcType="VARCHAR" />
+		<result column="menu_name" property="menu_name" jdbcType="VARCHAR" />
+		<result column="menu_url" property="menu_url" jdbcType="VARCHAR" />
+		<result column="menu_description" property="menu_description" jdbcType="VARCHAR" />
+		<result column="is_menu_show" property="is_menu_show" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+ 		menu_id,child_menu_id,parent_menu_id,menu_name,menu_url,menu_description,is_menu_show
+ 	</sql>
+	<insert id="addMenu" parameterType="cn.magicdu.blog.pojo.Bookmark">
+		INSERT INTO magic_menu(<include refid="Base_Column_List" />) VALUES
+		(
+		  #{menu_id,jdbcType=VARCHAR}, #{child_menu_id,jdbcType=VARCHAR},
+		  #{parent_menu_id,jdbcType=VARCHAR}, #{menu_name,jdbcType=VARCHAR},
+		  #{menu_url,jdbcType=VARCHAR},
+		  #{menu_description,jdbcType=VARCHAR},
+		  #{is_menu_show,jdbcType=INTEGER}
+		)
+	</insert>
+	<select id="getMenuList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select mm.menu_id,mm.child_menu_id,mm.parent_menu_id,
+		mm.menu_name,mm.menu_url,mm.menu_description,
+		mm.is_menu_show
+		from magic_menu mm
+	</select>
+</mapper>

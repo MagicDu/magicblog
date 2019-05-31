@@ -394,13 +394,17 @@ $('#edit_bookmarks_btn').click(function(e) {
 $('#test').click(function (){
 	$.ajax({
 		type:'POST',
-		url:'../selectUserBoomarks.action',
+		url:'../menu/getMenus',
+        headers:{
+            "Authorization":localStorage.getItem("authtoken")
+        },
 		data : {
-			"user_id" : 'test'
+
 		},
 		success:function(data){
 			//mdui.alert(data.resultMap['test,计算机'][0].userid)
-			parseDataToView(data);
+			//parseDataToView(data);
+			console.log(data);
 		},
 		error:function(){
 			mdui.alert('服务器错误')

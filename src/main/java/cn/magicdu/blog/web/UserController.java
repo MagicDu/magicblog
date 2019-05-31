@@ -30,12 +30,26 @@ public class UserController {
         user.setPassword("hello");
         return  user;
     }
+
+    /**
+     * user login
+     * @param username
+     * @param password
+     * @return msg with jwt token
+     */
     @RequestMapping(value="/login",method = RequestMethod.POST)
     public  Msg login(String username,String password){
             msg=Msg.getInstance();
             service.validateUser(username,password,msg);
             return msg;
     }
+
+    /**
+     *  user register
+     *  password was hashed and add salt
+     * @param user
+     * @return msg
+     */
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public  Msg register(User user){
         System.err.println("add user");
